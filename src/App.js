@@ -31,10 +31,10 @@ export default App;
 class Home extends Component {
   render() {
     return (
-      <section className="view">
+      <section className="home view">
         <nav>
           <h1 className="shot-logo mv0"></h1>
-          <ButtonTool text="Settings" icon="/images/icon-settings.svg"/>
+          <ButtonTool size="large" text="Settings" icon="/images/icon-settings.svg"/>
         </nav>
         <main>
           <div className="cards center">
@@ -57,11 +57,11 @@ class Home extends Component {
 class Shot extends Component {
   render() {
     return (
-      <section className="view">
+      <section className="shot view">
         <nav>
           <div className="shot-tools">
             <div onClick={() => this.props.switchView("home")}>
-              <ButtonTool text="All Shots" icon="/images/icon-shots.svg"/>
+              <ButtonTool size="large" text="All Shots" icon="/images/icon-shots.svg"/>
             </div>
             <div className="shot-info">
               <h1 className="mv0">This is a shot title</h1>
@@ -73,20 +73,18 @@ class Shot extends Component {
             </div>
           </div>
           <div className="shot-tools">
-            <div className="shot-tools">
-              <ButtonTool text="Favorite" icon="/images/icon-heart.svg"/>
-              <ButtonTool text="Draw" icon="/images/icon-pen.svg"/>
-              <ButtonTool text="Share" icon="/images/icon-share.svg"/>
-              <ButtonTool text="Copy" icon="/images/icon-copy.svg"/>
-              <ButtonTool text="Download" icon="/images/icon-download.svg"/>
-              <ButtonTool text="Delete" icon="/images/icon-trash.svg"/>
-            </div>
-            <div>
-              <ButtonTool text="Settings" icon="/images/icon-settings.svg"/>
-            </div>
+            <ButtonTool size="large" text="Settings" icon="/images/icon-settings.svg"/>
           </div>
         </nav>
         <main>
+          <div className="shot-floating-tools center bg-white shadow">
+            <ButtonTool text="Favorite" icon="/images/icon-heart.svg"/>
+            <ButtonTool text="Draw" icon="/images/icon-pen.svg"/>
+            <ButtonTool text="Copy" icon="/images/icon-copy.svg"/>
+            <ButtonTool text="Download" icon="/images/icon-download.svg"/>
+            <ButtonTool text="Share" icon="/images/icon-share.svg"/>
+            <ButtonTool text="Delete" icon="/images/icon-trash.svg"/>
+          </div>
           <div className="shot-container center">
             <img className="shot-image" src="https://fakeimg.pl/800x600/ffffff/cccccc/"/>
           </div>
@@ -107,14 +105,29 @@ function ButtonTool(props) {
     backgroundRepeat: "no-repeat"
 
   }
+  var cn = "button-tool-small";
+  let tooltip = (<Tooltips text={props.text}/>);
+  if(props.size === "large") {
+    cn = "button-tool";
+    tooltip = null;
+  }
   return (
-    <div className="button-tool">
+    <div className={cn}>
       <div>
         <div className="button-tool__icon center" style={icon}></div>
         <p className="tc mt2 mb0 fw7">{props.text}</p>
       </div>
+      {tooltip}
     </div>
   )
+}
+
+function Tooltips(props) {
+  return (
+    <div className="tooltips absolute">
+      <label className="tc mv0 fw7">{props.text}</label>
+    </div>
+  ) 
 }
 
 function ShotCard(props) {

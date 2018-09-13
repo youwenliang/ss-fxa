@@ -20,6 +20,7 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	user-select: none;
+	border-bottom: rgba(115,115,115,.2) 1px solid;
 }
 
 nav .shot-logo {
@@ -34,6 +35,10 @@ nav .shot-logo {
 	padding: 0 16px;
 }
 
+.shot-info h1 {
+	font-size: 28px;
+}
+
 .shot-info ul {
 	display: flex;
 	flex-direction: row;
@@ -41,10 +46,12 @@ nav .shot-logo {
 }
 
 .shot-info li {
+	font-size: 15px;
 	margin-right: 16px;
 }
 
-.button-tool {
+.button-tool,
+.button-tool-small {
 	width: 96px;
 	height: 96px;
 	display: flex;
@@ -53,17 +60,32 @@ nav .shot-logo {
 	cursor: pointer;
 }
 
-.button-tool:hover {
+.button-tool-small {
+	width: 60px;
+	height: 60px;
+}
+
+.button-tool-small p {
+	display: none;
+}
+
+.button-tool:hover,
+.button-tool-small:hover {
 	background: rgba(12,12,13,0.05);
 }
 
-.button-tool:active {
+.button-tool:active,
+.button-tool-small:active {
 	background: rgba(12,12,13,0.1);	
 }
 
 .button-tool__icon {
 	width: 24px;
 	height: 24px;
+}
+
+.shadow {
+	box-shadow: 0 4px 16px rgba(12,12,13,0.1);
 }
 
 main {
@@ -89,6 +111,17 @@ main .cards{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+.shot-floating-tools {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 360px;
+	height: 60px;
+	z-index: 10;
+    position: relative;
+    top: 30px;
 }
 
 .shot-container {
@@ -134,21 +167,75 @@ main .cards{
 	cursor: pointer;
 }
 
-@media (max-width: 1200px) {
+.tooltips {
+	padding: 10px 20px;
+    background: #2a2a2e;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(12,12,13,0.1);
+    bottom: -40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease-in-out;
+}
+
+.button-tool-small:hover .tooltips {
+	opacity: 1;
+	transition: opacity .2s ease-in-out .2s;
+}
+
+.tooltips:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	transform: rotate(45deg);
+	background: #2a2a2e;
+	top: -3px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+@media (max-width: 719px) {
 	nav .shot-logo {
 		width: 265px;
 		height: 25px;
 		margin-left: 16px;
 	}
+	nav {
+		height: 70px;
+	}
 	.button-tool {
-		width: 56px;
+		width: 70px;
+		height: 70px;
 	}
 	.button-tool p {
 		display: none;
 	}
-}
+	.shot-info h1 {
+		font-size: 20px;
+	}
+	.shot-info li {
+		font-size: 12px;
+	}
+	.shot-info li:nth-child(2),
+	.shot-info li:nth-child(3) {
+		display: none;
+	}
+	.shot-floating-tools {
+		position: absolute;
+	    margin: auto;
+	    left: 0;
+	    right: 0;
+	    top: 70px;
+	    width: 100%;
+	    display: flex;
+	    justify-content: center;
+	}
 
-@media (max-width: 719px) {
 	main {
 		padding: 16px;
 	}
