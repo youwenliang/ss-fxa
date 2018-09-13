@@ -4,7 +4,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'home'
+      view: 'shot'
     }
   }
   switchView = (view) => {
@@ -30,11 +30,15 @@ export default App;
 /* Views */
 class Home extends Component {
   render() {
+    var logo = {
+      background: "url(./images/landing-ss-logo.svg) no-repeat",
+      backgroundSize: "contain"
+    }
     return (
       <section className="home view">
         <nav>
-          <h1 className="shot-logo mv0"></h1>
-          <ButtonTool size="large" text="Settings" icon="/images/icon-settings.svg"/>
+          <h1 className="shot-logo mv0" style={logo}></h1>
+          <ButtonTool size="large" text="Settings" icon="./images/icon-settings.svg"/>
         </nav>
         <main>
           <div className="cards center">
@@ -61,7 +65,7 @@ class Shot extends Component {
         <nav>
           <div className="shot-tools">
             <div onClick={() => this.props.switchView("home")}>
-              <ButtonTool size="large" text="All Shots" icon="/images/icon-shots.svg"/>
+              <ButtonTool size="large" text="All Shots" icon="./images/icon-shots.svg"/>
             </div>
             <div className="shot-info">
               <h1 className="mv0">This is a shot title</h1>
@@ -73,20 +77,20 @@ class Shot extends Component {
             </div>
           </div>
           <div className="shot-tools">
-            <ButtonTool size="large" text="Settings" icon="/images/icon-settings.svg"/>
+            <ButtonTool size="large" text="Settings" icon="./images/icon-settings.svg"/>
           </div>
         </nav>
         <main>
-          <div className="shot-floating-tools center bg-white shadow">
-            <ButtonTool text="Favorite" icon="/images/icon-heart.svg"/>
-            <ButtonTool text="Draw" icon="/images/icon-pen.svg"/>
-            <ButtonTool text="Copy" icon="/images/icon-copy.svg"/>
-            <ButtonTool text="Download" icon="/images/icon-download.svg"/>
-            <ButtonTool text="Share" icon="/images/icon-share.svg"/>
-            <ButtonTool text="Delete" icon="/images/icon-trash.svg"/>
+          <div className="shot-floating-tools center bg-white shadow-1">
+            <ButtonTool text="Favorite" icon="./images/icon-heart-outline.svg"/>
+            <ButtonTool text="Draw" icon="./images/icon-pen.svg"/>
+            <ButtonTool text="Copy" icon="./images/icon-copy.svg"/>
+            <ButtonTool text="Download" icon="./images/icon-download.svg"/>
+            <ButtonTool text="Share" icon="./images/icon-share.svg"/>
+            <ButtonTool text="Delete" icon="./images/icon-trash.svg"/>
           </div>
           <div className="shot-container center">
-            <img className="shot-image" src="https://fakeimg.pl/800x600/ffffff/cccccc/"/>
+            <img className="shot-image shadow-2" src="https://fakeimg.pl/800x600/ffffff/cccccc/"/>
           </div>
         </main>
         <Footer/>
@@ -124,7 +128,7 @@ function ButtonTool(props) {
 
 function Tooltips(props) {
   return (
-    <div className="tooltips absolute">
+    <div className="tooltips absolute shadow-2">
       <label className="tc mv0 fw7">{props.text}</label>
     </div>
   ) 
@@ -132,14 +136,23 @@ function Tooltips(props) {
 
 function ShotCard(props) {
   return (
-    <div className="shot-card bg-silver" onClick={() => props.switchView("shot")}></div>
+    <div className="shot-card bg-silver shadow-2" onClick={() => props.switchView("shot")}>
+      <figure className="bg-light-gray"></figure>
+      <div className="card-info">
+        <h1 className="mt0 mb1">This is a card title</h1>
+        <p className="mv0">https://www.cardurl.com</p>
+      </div>
+    </div>
   )
 }
 
 function Footer() {
+  var logo = {
+    background: "url(./images/moz.svg) no-repeat"
+  }
   return (
     <footer className="main-footer">
-      <a className="main-footer__moz-logo"></a>
+      <a className="main-footer__moz-logo" style={logo}></a>
       <ul className="main-footer__links">
         <li><a>Terms</a></li>
         <li><a>Privacy Notice</a></li>
